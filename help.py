@@ -35,7 +35,7 @@ class HelpMod(loader.Module):
         "single_mod_header": "<b>Инфа о</b> <u>{}</u>:\n",
         "single_cmd": "\n➪ {}\n",
         "undoc_cmd": "...",
-        "all_header": "Список команд <a href='https://t.me/instance103'>f1xc0d3</a> bot. Всего загружено <code>{}</code> модулей:\n",
+        "all_header": "<b>Список команд <a href='https://t.me/instance103'>f1xc0d3</a> bot.</b> <b>Всего загружено </b><code>{}</code> <b>модулей:\n</b>",
         "mod_tmpl": "\n• <code>{}</code>",
         "first_cmd_tmpl": " ➪ [ {}",
         "cmd_tmpl": " | {}",
