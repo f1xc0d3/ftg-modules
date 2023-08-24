@@ -35,8 +35,8 @@ class HelpMod(loader.Module):
         "single_mod_header": "<b>Инфа о</b> <u>{}</u>:\n",
         "single_cmd": "\n➪ {}\n",
         "undoc_cmd": "...",
-        "all_header": "Загружено <code>{}</code> модулей:\n\n",
-        "mod_tmpl": "\n‣<code>{}</code>",
+        "all_header": "Список команд Friendly-Telegram. Всего загружено <code>{}</code> модулей:\n",
+        "mod_tmpl": "\n• <code>{}</code>",
         "first_cmd_tmpl": " ➪ [ {}",
         "cmd_tmpl": " | {}",
     }
