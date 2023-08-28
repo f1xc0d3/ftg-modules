@@ -33,12 +33,12 @@ class PingerMod(loader.Module):
 		ping_data = []
 		for _ in range(a):
 			start = datetime.now()
-			msg = await message.client.send_message("me", "ping")
+			msg = await client.send_message("me", "ping")
 			end = datetime.now()
 			duration = (end - start).microseconds / 1000
 			ping_data.append(duration)
 			ping_msg.append(msg)
 		ping = sum(ping_data) / len(ping_data)
-		await message.edit(f"<code>[ok] {str(ping)[0:5]}ms</code>")
+		await utils.answer(message, f"<code>[ok] {str(ping)[0:5]}ms</code>")
 		for i in ping_msg:
 			await i.delete()
