@@ -33,7 +33,7 @@ class PingerMod(loader.Module):
 		ping_data = []
 		for _ in range(a):
 			start = datetime.now()
-			msg = await client.send_message("me", "ping")
+			msg = await message.client.send_message("me", "ping")
 			end = datetime.now()
 			duration = (end - start).microseconds / 1000
 			ping_data.append(duration)
