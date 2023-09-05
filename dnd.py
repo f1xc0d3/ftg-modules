@@ -389,7 +389,7 @@ class DoNotDisturbMod(loader.Module):
         user = await utils.get_user(message)
         pm = self._db.get(__name__, "pm")
         if getattr(message.to_id, "user_id", None) == self._me.user_id and (pm is None or pm is False):
-            if not user.is_self and not user.bot and not user.verified and not self.get_allowed(message.from_id):
+            if not user.is_self and not user.bot and not user.verified and not self.get_allowed(message.user_id):
                 await utils.answer(message, self.strings("pm_go_away",message))
                 if self._db.get(__name__, "pm_limit") is True:
                     pms = self._db.get(__name__, "pms", {})
