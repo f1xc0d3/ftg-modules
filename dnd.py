@@ -394,15 +394,15 @@ class DoNotDisturbMod(loader.Module):
                 if self._db.get(__name__, "pm_limit") is True:
                     pms = self._db.get(__name__, "pms", {})
                     pm_limit = self._db.get(__name__, "pm_limit_max")
-                    pm_user = pms.get(message.from_id, 0)
+                    pm_user = pms.get(message.chat_id, 0)
                     if isinstance(pm_limit, int) and pm_limit >= 5 and pm_limit <= 1000 and pm_user >= pm_limit:
                         await utils.answer(message, self.strings("pm_triggered", message))
-                        await message.client(functions.contacts.BlockRequest(message.from_id))
-                        await message.client(functions.messages.ReportSpamRequest(peer=message.from_id))
-                        del pms[message.from_id]
+                        await message.client(functions.contacts.BlockRequest(message.chat_id))
+                        await message.client(functions.messages.ReportSpamRequest(message.chat_id))
+                        del pms[message.chat_id]
                         self._db.set(__name__, "pms", pms)
                     else:
-                        self._db.set(__name__, "pms", {**pms, message.from_id: pms.get(message.from_id, 0) + 1})
+                        self._db.set(__name__, "pms", {**pms, message.chat_id: pms.get(message.chat_id, 0) + 1})
                 pm_notif = self._db.get(__name__, "pm_notif")
                 if pm_notif is None or pm_notif is False:
                     await message.client.send_read_acknowledge(message.chat_id)
