@@ -47,8 +47,8 @@ class FileUploaderMod(loader.Module):
         except ConnectionError:
             await utils.answer(message, "<b>Error</b>")
             return
-        url = x0at.text
-        output = f"<a href=\"{str(url)}\">URL:</a> <code>{url}</code>"
+        url = str(x0at.text)
+        output = f"<a href=\"{url}\">URL:</a> <code>{url}</code>"
         await utils.answer(message, output)
 
     async def telegraphcmd(self, message):
