@@ -29,7 +29,7 @@ class FileUploaderMod(loader.Module):
 
     @loader.sudo
     async def x0cmd(self, message):
-        """Upload to x0"""
+        """Upload to 0x0"""
         await message.edit("<b>Uploading...</b>")
         reply = await message.get_reply_message()
         if not reply:
@@ -43,7 +43,7 @@ class FileUploaderMod(loader.Module):
             file = io.BytesIO(await self.client.download_file(media))
             file.name = reply.file.name or reply.file.id + reply.file.ext
         try:
-            x0at = post("https://x0.at", files={"file": file})
+            x0at = post("https://0x0.st", files={"file": file})
         except ConnectionError:
             await message.edit("<b>Error</b>")
             return
@@ -72,33 +72,6 @@ class FileUploaderMod(loader.Module):
         except KeyError:
             link = path["error"]
         await message.edit("<b>" + link + "</b>")
-
-    async def imgurcmd(self, message):
-        """Upload to imgur"""
-        chat = "@ImgUploadBot"
-        reply = await message.get_reply_message()
-        async with message.client.conversation(chat) as conv:
-            if not reply:
-                await message.edit("<b>Reply to photo</b>")
-                return
-            else:
-                pic = await check_mediaa(message, reply)
-                if not pic:
-                    await utils.answer(message, "<b>Reply to photo</b>")
-                    return
-            await message.edit("<b>Uploading...</b>")
-            try:
-                what = lol(pic)
-                response = conv.wait_event(
-                    events.NewMessage(incoming=True, from_users=985223903)
-                )
-                await message.client.send_file(chat, what)
-                response = await response
-            except YouBlockedUserError:
-                await message.edit("<code>Разблокируй @imgurbot_bot</code>")
-                return
-            await message.edit("<b>Imgur link - </b>" + response.text)
-
 
 async def check_media(reply_message):
     if reply_message and reply_message.media:
