@@ -33,7 +33,7 @@ class FileUploaderMod(loader.Module):
         await message.edit("<b>Uploading...</b>")
         reply = await message.get_reply_message()
         if not reply:
-            await message.edit("<b>Reply to message!</b>")
+            await utils.answer("<b>Reply to message!</b>")
             return
         media = reply.media
         if not media:
@@ -45,11 +45,11 @@ class FileUploaderMod(loader.Module):
         try:
             x0at = post("https://0x0.st", files={"file": file})
         except ConnectionError:
-            await message.edit("<b>Error</b>")
+            await utils.answer("<b>Error</b>")
             return
         url = x0at.text
         output = f"<a href=\"{url}\">URL:</a> <code>{url}</code>"
-        await message.edit(output)
+        await utils.answer(output)
 
     async def telegraphcmd(self, message):
         """.ph <reply photo or video>"""
@@ -57,10 +57,10 @@ class FileUploaderMod(loader.Module):
             reply_message = await message.get_reply_message()
             data = await check_media(reply_message)
             if isinstance(data, bool):
-                await message.edit("<b>Reply to photo or video/gif</b>")
+                await utils.answer("<b>Reply to photo or video/gif</b>")
                 return
         else:
-            await message.edit("<b>Reply to photo or video/gif</b>")
+            await utils.answer("<b>Reply to photo or video/gif</b>")
             return
 
         file = await message.client.download_media(data, bytes)
@@ -71,7 +71,7 @@ class FileUploaderMod(loader.Module):
             link = "https://te.legra.ph" + path[0]["src"]
         except KeyError:
             link = path["error"]
-        await message.edit("<b>" + link + "</b>")
+        await utils.answer("<b>" + link + "</b>")
 
 async def check_media(reply_message):
     if reply_message and reply_message.media:
