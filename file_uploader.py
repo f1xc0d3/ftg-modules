@@ -48,7 +48,7 @@ class FileUploaderMod(loader.Module):
             await message.edit("<b>Error</b>")
             return
         url = x0at.text
-        output = f'<a href="{url}">URL: </a><code>{url}</code>'
+        output = f'<a href="{url}">URL:</a><code>{url}</code>'
         await message.edit(output)
 
     async def telegraphcmd(self, message):
