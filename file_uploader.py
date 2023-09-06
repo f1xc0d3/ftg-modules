@@ -48,7 +48,7 @@ class FileUploaderMod(loader.Module):
             await utils.answer(message, "<b>Error</b>")
             return
         url = x0at.text
-        output = f"<a href=f\"{url}\">URL:</a> <code>{url}</code>"
+        output = f"<a href=\"{str(url)}\">URL:</a> <code>{url}</code>"
         await utils.answer(message, output)
 
     async def telegraphcmd(self, message):
