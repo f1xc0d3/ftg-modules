@@ -195,7 +195,7 @@ class FakeMod(loader.Module):
         for _ in range(a):
             await message.client(
                 functions.messages.SendScreenshotNotificationRequest(
-                    peer=message.to_id, reply_to_msg_id=message.id
+                    peer=message.to_id, reply_to=InputReplyToMessage(reply_to_msg_id=message.id, top_msg_id=message.id)
                 )
             )
         await message.delete()
