@@ -5,7 +5,7 @@
 from asyncio import sleep
 from random import randint
 
-from telethon import functions
+from telethon import functions, types
 
 from .. import loader, utils
 
@@ -195,7 +195,7 @@ class FakeMod(loader.Module):
         for _ in range(a):
             await message.client(
                 functions.messages.SendScreenshotNotificationRequest(
-                    peer=message.to_id, reply_to=InputReplyToMessage(reply_to_msg_id=message.id, top_msg_id=message.id)
+                    peer=message.to_id, reply_to=types.InputReplyToMessagesage(reply_to_msg_id=message.id, top_msg_id=message.id)
                 )
             )
         await message.delete()
